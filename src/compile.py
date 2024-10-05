@@ -75,7 +75,7 @@ def make_group_header(packet_group_key, packets_for_packet_group):
 def create_packet_headers(packet_groups_for_device, packets_for_packet_group, payloads, build_path = "../bin"):
     packet_structs = {}
     
-    os.system(f"cp common/* {build_path}")
+    os.system(f"cp ../common/* {build_path}")
 
     for packet_group_key in packets_for_packet_group.keys():
     
