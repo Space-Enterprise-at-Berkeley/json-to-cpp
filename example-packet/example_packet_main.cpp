@@ -2,11 +2,7 @@
 
 int main()
 {
-	auto empty = SupplyStatsV24::Builder()
-        .withVoltage(1)
-        .withCurrent(1)
-        .withPower(1)
-        .build();
+	example();
 
 	return 0;
 }
