@@ -3,7 +3,33 @@
 
 #include "common.h"
 
-class PhaseCurrents 
+#ifdef PT
+#error
+#endif
+#ifdef TC
+#error
+#endif
+#ifdef LC
+#error
+#endif
+#ifdef AC
+#error
+#endif
+#ifdef CF
+#error
+#endif
+#ifdef AC_2
+#error
+#endif
+#ifdef AC_3
+#error
+#endif
+#ifdef AC_1
+#error
+#endif
+
+
+class PacketPhaseCurrents 
 {
 public:
 
@@ -23,10 +49,10 @@ class Builder_
     
     Builder_() {}    
     
-    PhaseCurrents build() const    
+    PacketPhaseCurrents build() const    
     {            
         static_assert( f0set &&  f1set &&  f2set, "All fields must be set before building."); // Added static assert    
-        return PhaseCurrents(this->m_CurrentA, this->m_CurrentB, this->m_CurrentC);    
+        return PacketPhaseCurrents(this->m_CurrentA, this->m_CurrentB, this->m_CurrentC);    
     }    
     
             
@@ -67,7 +93,7 @@ private:
 
     uint8_t id = 8;
 
-    PhaseCurrents(float CurrentAIn, float CurrentBIn, float CurrentCIn)
+    PacketPhaseCurrents(float CurrentAIn, float CurrentBIn, float CurrentCIn)
         : m_CurrentA(CurrentAIn), m_CurrentB(CurrentBIn), m_CurrentC(CurrentCIn)
     {}
 };

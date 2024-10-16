@@ -3,7 +3,33 @@
 
 #include "common.h"
 
-class PartialOpen 
+#ifdef PT
+#error
+#endif
+#ifdef TC
+#error
+#endif
+#ifdef LC
+#error
+#endif
+#ifdef AC
+#error
+#endif
+#ifdef CF
+#error
+#endif
+#ifdef AC_2
+#error
+#endif
+#ifdef AC_3
+#error
+#endif
+#ifdef AC_1
+#error
+#endif
+
+
+class PacketPartialOpen 
 {
 public:
 
@@ -21,10 +47,10 @@ class Builder_
     
     Builder_() {}    
     
-    PartialOpen build() const    
+    PacketPartialOpen build() const    
     {            
         static_assert( f0set, "All fields must be set before building."); // Added static assert    
-        return PartialOpen(this->m_EncoderTicks);    
+        return PacketPartialOpen(this->m_EncoderTicks);    
     }    
     
             
@@ -49,7 +75,7 @@ private:
 
     uint8_t id = 202;
 
-    PartialOpen(float EncoderTicksIn)
+    PacketPartialOpen(float EncoderTicksIn)
         : m_EncoderTicks(EncoderTicksIn)
     {}
 };

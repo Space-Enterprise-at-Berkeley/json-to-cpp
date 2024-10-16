@@ -3,7 +3,33 @@
 
 #include "common.h"
 
-class FlowState 
+#ifdef PT
+#error
+#endif
+#ifdef TC
+#error
+#endif
+#ifdef LC
+#error
+#endif
+#ifdef AC
+#error
+#endif
+#ifdef CF
+#error
+#endif
+#ifdef AC_2
+#error
+#endif
+#ifdef AC_3
+#error
+#endif
+#ifdef AC_1
+#error
+#endif
+
+
+class PacketFlowState 
 {
 public:
 
@@ -21,10 +47,10 @@ class Builder_
     
     Builder_() {}    
     
-    FlowState build() const    
+    PacketFlowState build() const    
     {            
         static_assert( f0set, "All fields must be set before building."); // Added static assert    
-        return FlowState(this->m_FlowState);    
+        return PacketFlowState(this->m_FlowState);    
     }    
     
             
@@ -49,7 +75,7 @@ private:
 
     uint8_t id = 6;
 
-    FlowState(uint8_t FlowStateIn)
+    PacketFlowState(uint8_t FlowStateIn)
         : m_FlowState(FlowStateIn)
     {}
 };

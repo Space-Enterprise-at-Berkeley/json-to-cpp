@@ -3,7 +3,33 @@
 
 #include "common.h"
 
-class Temperatures 
+#ifdef PT
+#error
+#endif
+#ifdef TC
+#error
+#endif
+#ifdef LC
+#error
+#endif
+#ifdef AC
+#error
+#endif
+#ifdef CF
+#error
+#endif
+#ifdef AC_2
+#error
+#endif
+#ifdef AC_3
+#error
+#endif
+#ifdef AC_1
+#error
+#endif
+
+
+class PacketTemperatures 
 {
 public:
 
@@ -23,10 +49,10 @@ class Builder_
     
     Builder_() {}    
     
-    Temperatures build() const    
+    PacketTemperatures build() const    
     {            
         static_assert( f0set &&  f1set &&  f2set, "All fields must be set before building."); // Added static assert    
-        return Temperatures(this->m_BoardTemp1, this->m_BoardTemp2, this->m_MotorTemp);    
+        return PacketTemperatures(this->m_BoardTemp1, this->m_BoardTemp2, this->m_MotorTemp);    
     }    
     
             
@@ -67,7 +93,7 @@ private:
 
     uint8_t id = 9;
 
-    Temperatures(float BoardTemp1In, float BoardTemp2In, float MotorTempIn)
+    PacketTemperatures(float BoardTemp1In, float BoardTemp2In, float MotorTempIn)
         : m_BoardTemp1(BoardTemp1In), m_BoardTemp2(BoardTemp2In), m_MotorTemp(MotorTempIn)
     {}
 };

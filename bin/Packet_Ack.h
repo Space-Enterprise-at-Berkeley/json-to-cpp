@@ -3,7 +3,9 @@
 
 #include "common.h"
 
-class Ack 
+
+
+class PacketAck 
 {
 public:
 
@@ -21,10 +23,10 @@ class Builder_
     
     Builder_() {}    
     
-    Ack build() const    
+    PacketAck build() const    
     {            
         static_assert( f0set, "All fields must be set before building."); // Added static assert    
-        return Ack(this->m_ProtoVersion);    
+        return PacketAck(this->m_ProtoVersion);    
     }    
     
             
@@ -49,7 +51,7 @@ private:
 
     uint8_t id = 0;
 
-    Ack(std::array<uint8_t, 40> ProtoVersionIn)
+    PacketAck(std::array<uint8_t, 40> ProtoVersionIn)
         : m_ProtoVersion(ProtoVersionIn)
     {}
 };

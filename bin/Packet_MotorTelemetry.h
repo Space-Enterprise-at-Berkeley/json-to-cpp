@@ -3,7 +3,33 @@
 
 #include "common.h"
 
-class MotorTelemetry 
+#ifdef PT
+#error
+#endif
+#ifdef TC
+#error
+#endif
+#ifdef LC
+#error
+#endif
+#ifdef AC
+#error
+#endif
+#ifdef CF
+#error
+#endif
+#ifdef AC_2
+#error
+#endif
+#ifdef AC_3
+#error
+#endif
+#ifdef AC_1
+#error
+#endif
+
+
+class PacketMotorTelemetry 
 {
 public:
 
@@ -28,10 +54,10 @@ class Builder_
     
     Builder_() {}    
     
-    MotorTelemetry build() const    
+    PacketMotorTelemetry build() const    
     {            
         static_assert( f0set &&  f1set &&  f2set &&  f3set &&  f4set &&  f5set &&  f6set &&  f7set, "All fields must be set before building."); // Added static assert    
-        return MotorTelemetry(this->m_EncoderAngle, this->m_AngleSetpoint, this->m_PressureSetpoint, this->m_MotorPower, this->m_PressureControlIP, this->m_PressureControl, this->m_PressureControlID, this->m__reserved0);    
+        return PacketMotorTelemetry(this->m_EncoderAngle, this->m_AngleSetpoint, this->m_PressureSetpoint, this->m_MotorPower, this->m_PressureControlIP, this->m_PressureControl, this->m_PressureControlID, this->m__reserved0);    
     }    
     
             
@@ -112,7 +138,7 @@ private:
 
     uint8_t id = 2;
 
-    MotorTelemetry(float EncoderAngleIn, float AngleSetpointIn, float PressureSetpointIn, float MotorPowerIn, float PressureControlIPIn, float PressureControlIn, float PressureControlIDIn, float _reserved0In)
+    PacketMotorTelemetry(float EncoderAngleIn, float AngleSetpointIn, float PressureSetpointIn, float MotorPowerIn, float PressureControlIPIn, float PressureControlIn, float PressureControlIDIn, float _reserved0In)
         : m_EncoderAngle(EncoderAngleIn), m_AngleSetpoint(AngleSetpointIn), m_PressureSetpoint(PressureSetpointIn), m_MotorPower(MotorPowerIn), m_PressureControlIP(PressureControlIPIn), m_PressureControl(PressureControlIn), m_PressureControlID(PressureControlIDIn), m__reserved0(_reserved0In)
     {}
 };

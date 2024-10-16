@@ -19,6 +19,7 @@ class Fields():
     #                             [ { "array": 8, "enum": "ACActuatorStates", "type": "u8", "symbol": "states" }, 
     #                               { "array": 8, "enum": "ACActuatorStates", "type": "u8", "symbol": "states" }
     #                             ]
+
     def __init__(self, fields):
 
         self.type = []  # Initialize as empty list
@@ -139,21 +140,10 @@ class Builder_
         return template
 
 def test_fields():
-    a = Fields([{ "type": "f32", "symbol": "systemMode" },
-        { "type": "u8", "symbol": "burnTime" },
-        { "type": "f32", "symbol": "nitrousEnable" },
-        { "type": "f32", "symbol": "ipaEnable" }])
-
-    print(a.build_Builder("Test"))
-
-    b = Fields([
-    { "type": "f32", "symbol": "supply24Voltage" },
-    { "type": "f32", "symbol": "supply24Current" },
-    { "type": "f32", "symbol": "supply24Power" }
+    a = Fields([
+    { "enum": "SystemMode", "type": "u8", "symbol": "systemMode" },
+    { "type": "f32", "symbol": "burnTime" },
+    { "type": "u8", "symbol": "nitrousEnable" },
+    { "type": "u8", "symbol": "ipaEnable" }
     ])
-    
-    print(b.build_Builder("SupplyStatsV24"))
-
-    c = Fields([    { "array": 8, "enum": "ACActuatorStates", "type": "u8", "symbol": "states" }
-        ])
-    print(c.build_Builder("ACActuatorState"))
+    print(a.build_Builder("Launch"))

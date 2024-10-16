@@ -3,7 +3,33 @@
 
 #include "common.h"
 
-class CalibrationSettings 
+#ifdef PT
+#error
+#endif
+#ifdef TC
+#error
+#endif
+#ifdef LC
+#error
+#endif
+#ifdef AC
+#error
+#endif
+#ifdef CF
+#error
+#endif
+#ifdef AC_2
+#error
+#endif
+#ifdef AC_3
+#error
+#endif
+#ifdef AC_1
+#error
+#endif
+
+
+class PacketCalibrationSettings 
 {
 public:
 
@@ -24,10 +50,10 @@ class Builder_
     
     Builder_() {}    
     
-    CalibrationSettings build() const    
+    PacketCalibrationSettings build() const    
     {            
         static_assert( f0set &&  f1set &&  f2set &&  f3set, "All fields must be set before building."); // Added static assert    
-        return CalibrationSettings(this->m_UpstreamPt1, this->m_UpstreamPt2, this->m_DownstreamPt1, this->m_DownstreamPt2);    
+        return PacketCalibrationSettings(this->m_UpstreamPt1, this->m_UpstreamPt2, this->m_DownstreamPt1, this->m_DownstreamPt2);    
     }    
     
             
@@ -76,7 +102,7 @@ private:
 
     uint8_t id = 11;
 
-    CalibrationSettings(OffsetMultiplier UpstreamPt1In, OffsetMultiplier UpstreamPt2In, OffsetMultiplier DownstreamPt1In, OffsetMultiplier DownstreamPt2In)
+    PacketCalibrationSettings(OffsetMultiplier UpstreamPt1In, OffsetMultiplier UpstreamPt2In, OffsetMultiplier DownstreamPt1In, OffsetMultiplier DownstreamPt2In)
         : m_UpstreamPt1(UpstreamPt1In), m_UpstreamPt2(UpstreamPt2In), m_DownstreamPt1(DownstreamPt1In), m_DownstreamPt2(DownstreamPt2In)
     {}
 };

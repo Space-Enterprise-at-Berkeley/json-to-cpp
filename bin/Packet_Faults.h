@@ -3,7 +3,33 @@
 
 #include "common.h"
 
-class Faults 
+#ifdef PT
+#error
+#endif
+#ifdef LC
+#error
+#endif
+#ifdef AC
+#error
+#endif
+#ifdef CF
+#error
+#endif
+#ifdef ER
+#error
+#endif
+#ifdef AC_2
+#error
+#endif
+#ifdef AC_3
+#error
+#endif
+#ifdef AC_1
+#error
+#endif
+
+
+class PacketFaults 
 {
 public:
 
@@ -21,10 +47,10 @@ class Builder_
     
     Builder_() {}    
     
-    Faults build() const    
+    PacketFaults build() const    
     {            
         static_assert( f0set, "All fields must be set before building."); // Added static assert    
-        return Faults(this->m_Faults);    
+        return PacketFaults(this->m_Faults);    
     }    
     
             
@@ -49,7 +75,7 @@ private:
 
     uint8_t id = 4;
 
-    Faults(std::array<uint8_t, 8> FaultsIn)
+    PacketFaults(std::array<uint8_t, 8> FaultsIn)
         : m_Faults(FaultsIn)
     {}
 };

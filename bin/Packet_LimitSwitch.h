@@ -3,7 +3,33 @@
 
 #include "common.h"
 
-class LimitSwitch 
+#ifdef PT
+#error
+#endif
+#ifdef TC
+#error
+#endif
+#ifdef LC
+#error
+#endif
+#ifdef AC
+#error
+#endif
+#ifdef CF
+#error
+#endif
+#ifdef AC_2
+#error
+#endif
+#ifdef AC_3
+#error
+#endif
+#ifdef AC_1
+#error
+#endif
+
+
+class PacketLimitSwitch 
 {
 public:
 
@@ -22,10 +48,10 @@ class Builder_
     
     Builder_() {}    
     
-    LimitSwitch build() const    
+    PacketLimitSwitch build() const    
     {            
         static_assert( f0set &&  f1set, "All fields must be set before building."); // Added static assert    
-        return LimitSwitch(this->m_FullyClosedSwitch, this->m_FullyOpenSwitch);    
+        return PacketLimitSwitch(this->m_FullyClosedSwitch, this->m_FullyOpenSwitch);    
     }    
     
             
@@ -58,7 +84,7 @@ private:
 
     uint8_t id = 7;
 
-    LimitSwitch(float FullyClosedSwitchIn, float FullyOpenSwitchIn)
+    PacketLimitSwitch(float FullyClosedSwitchIn, float FullyOpenSwitchIn)
         : m_FullyClosedSwitch(FullyClosedSwitchIn), m_FullyOpenSwitch(FullyOpenSwitchIn)
     {}
 };

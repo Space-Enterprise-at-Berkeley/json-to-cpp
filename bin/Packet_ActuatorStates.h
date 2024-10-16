@@ -3,7 +3,33 @@
 
 #include "common.h"
 
-class ActuatorStates 
+#ifdef PT
+#error
+#endif
+#ifdef TC
+#error
+#endif
+#ifdef LC
+#error
+#endif
+#ifdef CF
+#error
+#endif
+#ifdef ER
+#error
+#endif
+#ifdef AC_2
+#error
+#endif
+#ifdef AC_3
+#error
+#endif
+#ifdef AC_1
+#error
+#endif
+
+
+class PacketActuatorStates 
 {
 public:
 
@@ -12,23 +38,23 @@ template<bool f0set>
 class Builder_    
 {    
     private:    
-    std::array<ACActuatorStates, 8> m_States;    
+    std::array<ACActuatorStatesType, 8> m_States;    
     
     public:    
-    Builder_(std::array<ACActuatorStates, 8> StatesIn)    
+    Builder_(std::array<ACActuatorStatesType, 8> StatesIn)    
         : m_States(StatesIn)    
     {}    
     
     Builder_() {}    
     
-    ActuatorStates build() const    
+    PacketActuatorStates build() const    
     {            
         static_assert( f0set, "All fields must be set before building."); // Added static assert    
-        return ActuatorStates(this->m_States);    
+        return PacketActuatorStates(this->m_States);    
     }    
     
             
-    Builder_<true> withStates(std::array<ACActuatorStates, 8> input) const     
+    Builder_<true> withStates(std::array<ACActuatorStatesType, 8> input) const     
     {    
         static_assert(! f0set, "Cannot set field 'States', it is already set");    
         return Builder_<true>(input);    
@@ -45,11 +71,11 @@ class Builder_
     using Builder = Builder_<false>;
 
 private:
-    std::array<ACActuatorStates, 8> m_States;
+    std::array<ACActuatorStatesType, 8> m_States;
 
     uint8_t id = 2;
 
-    ActuatorStates(std::array<ACActuatorStates, 8> StatesIn)
+    PacketActuatorStates(std::array<ACActuatorStatesType, 8> StatesIn)
         : m_States(StatesIn)
     {}
 };

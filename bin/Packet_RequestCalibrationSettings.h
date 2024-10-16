@@ -3,7 +3,27 @@
 
 #include "common.h"
 
-class RequestCalibrationSettings 
+#ifdef TC
+#error
+#endif
+#ifdef AC
+#error
+#endif
+#ifdef CF
+#error
+#endif
+#ifdef AC_2
+#error
+#endif
+#ifdef AC_3
+#error
+#endif
+#ifdef AC_1
+#error
+#endif
+
+
+class PacketRequestCalibrationSettings 
 {
 public:
 
@@ -21,10 +41,10 @@ class Builder_
     
     Builder_() {}    
     
-    RequestCalibrationSettings build() const    
+    PacketRequestCalibrationSettings build() const    
     {            
         //static_assert(, "All fields must be set before building."); // Added static assert    
-        return RequestCalibrationSettings();    
+        return PacketRequestCalibrationSettings();    
     }    
     
             
@@ -40,9 +60,9 @@ class Builder_
 private:
     
 
-    uint8_t id = 103;
+    uint8_t id = 102;
 
-    RequestCalibrationSettings()
+    PacketRequestCalibrationSettings()
         
     {}
 };

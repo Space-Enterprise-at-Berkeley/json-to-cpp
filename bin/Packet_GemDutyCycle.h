@@ -3,7 +3,33 @@
 
 #include "common.h"
 
-class GemsDutyCycle 
+#ifdef PT
+#error
+#endif
+#ifdef TC
+#error
+#endif
+#ifdef LC
+#error
+#endif
+#ifdef CF
+#error
+#endif
+#ifdef ER
+#error
+#endif
+#ifdef AC_2
+#error
+#endif
+#ifdef AC_3
+#error
+#endif
+#ifdef AC_1
+#error
+#endif
+
+
+class PacketGemDutyCycle 
 {
 public:
 
@@ -21,10 +47,10 @@ class Builder_
     
     Builder_() {}    
     
-    GemsDutyCycle build() const    
+    PacketGemDutyCycle build() const    
     {            
         //static_assert(, "All fields must be set before building."); // Added static assert    
-        return GemsDutyCycle();    
+        return PacketGemDutyCycle();    
     }    
     
             
@@ -42,7 +68,7 @@ private:
 
     uint8_t id = 8;
 
-    GemsDutyCycle()
+    PacketGemDutyCycle()
         
     {}
 };

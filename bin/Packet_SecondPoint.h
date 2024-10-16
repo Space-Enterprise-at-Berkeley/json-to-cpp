@@ -3,7 +3,30 @@
 
 #include "common.h"
 
-class SetSecondPoint 
+#ifdef TC
+#error
+#endif
+#ifdef AC
+#error
+#endif
+#ifdef CF
+#error
+#endif
+#ifdef ER
+#error
+#endif
+#ifdef AC_2
+#error
+#endif
+#ifdef AC_3
+#error
+#endif
+#ifdef AC_1
+#error
+#endif
+
+
+class PacketSecondPoint 
 {
 public:
 
@@ -22,10 +45,10 @@ class Builder_
     
     Builder_() {}    
     
-    SetSecondPoint build() const    
+    PacketSecondPoint build() const    
     {            
         static_assert( f0set &&  f1set, "All fields must be set before building."); // Added static assert    
-        return SetSecondPoint(this->m_Channel, this->m_Value);    
+        return PacketSecondPoint(this->m_Channel, this->m_Value);    
     }    
     
             
@@ -56,9 +79,9 @@ private:
     uint8_t m_Channel;
     float m_Value;
 
-    uint8_t id = 102;
+    uint8_t id = 101;
 
-    SetSecondPoint(uint8_t ChannelIn, float ValueIn)
+    PacketSecondPoint(uint8_t ChannelIn, float ValueIn)
         : m_Channel(ChannelIn), m_Value(ValueIn)
     {}
 };

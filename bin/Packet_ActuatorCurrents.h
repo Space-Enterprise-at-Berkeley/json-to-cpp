@@ -3,7 +3,33 @@
 
 #include "common.h"
 
-class ActuatorCurrents 
+#ifdef PT
+#error
+#endif
+#ifdef TC
+#error
+#endif
+#ifdef LC
+#error
+#endif
+#ifdef CF
+#error
+#endif
+#ifdef ER
+#error
+#endif
+#ifdef AC_2
+#error
+#endif
+#ifdef AC_3
+#error
+#endif
+#ifdef AC_1
+#error
+#endif
+
+
+class PacketActuatorCurrents 
 {
 public:
 
@@ -21,10 +47,10 @@ class Builder_
     
     Builder_() {}    
     
-    ActuatorCurrents build() const    
+    PacketActuatorCurrents build() const    
     {            
         static_assert( f0set, "All fields must be set before building."); // Added static assert    
-        return ActuatorCurrents(this->m_Currents);    
+        return PacketActuatorCurrents(this->m_Currents);    
     }    
     
             
@@ -49,7 +75,7 @@ private:
 
     uint8_t id = 4;
 
-    ActuatorCurrents(std::array<float, 8> CurrentsIn)
+    PacketActuatorCurrents(std::array<float, 8> CurrentsIn)
         : m_Currents(CurrentsIn)
     {}
 };

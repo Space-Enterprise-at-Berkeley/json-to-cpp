@@ -3,7 +3,33 @@
 
 #include "common.h"
 
-class Capacitance 
+#ifdef PT
+#error
+#endif
+#ifdef TC
+#error
+#endif
+#ifdef LC
+#error
+#endif
+#ifdef AC
+#error
+#endif
+#ifdef ER
+#error
+#endif
+#ifdef AC_2
+#error
+#endif
+#ifdef AC_3
+#error
+#endif
+#ifdef AC_1
+#error
+#endif
+
+
+class PacketCapacitance 
 {
 public:
 
@@ -23,10 +49,10 @@ class Builder_
     
     Builder_() {}    
     
-    Capacitance build() const    
+    PacketCapacitance build() const    
     {            
         static_assert( f0set &&  f1set &&  f2set, "All fields must be set before building."); // Added static assert    
-        return Capacitance(this->m_Cap, this->m_Ref, this->m_Temperature);    
+        return PacketCapacitance(this->m_Cap, this->m_Ref, this->m_Temperature);    
     }    
     
             
@@ -67,7 +93,7 @@ private:
 
     uint8_t id = 1;
 
-    Capacitance(float CapIn, float RefIn, float TemperatureIn)
+    PacketCapacitance(float CapIn, float RefIn, float TemperatureIn)
         : m_Cap(CapIn), m_Ref(RefIn), m_Temperature(TemperatureIn)
     {}
 };

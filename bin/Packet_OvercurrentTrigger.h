@@ -3,7 +3,33 @@
 
 #include "common.h"
 
-class OvercurrentTrigger 
+#ifdef PT
+#error
+#endif
+#ifdef TC
+#error
+#endif
+#ifdef LC
+#error
+#endif
+#ifdef AC
+#error
+#endif
+#ifdef CF
+#error
+#endif
+#ifdef AC_2
+#error
+#endif
+#ifdef AC_3
+#error
+#endif
+#ifdef AC_1
+#error
+#endif
+
+
+class PacketOvercurrentTrigger 
 {
 public:
 
@@ -22,10 +48,10 @@ class Builder_
     
     Builder_() {}    
     
-    OvercurrentTrigger build() const    
+    PacketOvercurrentTrigger build() const    
     {            
         static_assert( f0set &&  f1set, "All fields must be set before building."); // Added static assert    
-        return OvercurrentTrigger(this->m_AvgCurrent, this->m_BufferSize);    
+        return PacketOvercurrentTrigger(this->m_AvgCurrent, this->m_BufferSize);    
     }    
     
             
@@ -58,7 +84,7 @@ private:
 
     uint8_t id = 10;
 
-    OvercurrentTrigger(float AvgCurrentIn, float BufferSizeIn)
+    PacketOvercurrentTrigger(float AvgCurrentIn, float BufferSizeIn)
         : m_AvgCurrent(AvgCurrentIn), m_BufferSize(BufferSizeIn)
     {}
 };

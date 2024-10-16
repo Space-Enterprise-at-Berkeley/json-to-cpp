@@ -3,7 +3,33 @@
 
 #include "common.h"
 
-class AutomationData 
+#ifdef TC
+#error
+#endif
+#ifdef LC
+#error
+#endif
+#ifdef AC
+#error
+#endif
+#ifdef CF
+#error
+#endif
+#ifdef ER
+#error
+#endif
+#ifdef AC_2
+#error
+#endif
+#ifdef AC_3
+#error
+#endif
+#ifdef AC_1
+#error
+#endif
+
+
+class PacketAutomationData 
 {
 public:
 
@@ -24,10 +50,10 @@ class Builder_
     
     Builder_() {}    
     
-    AutomationData build() const    
+    PacketAutomationData build() const    
     {            
         static_assert( f0set &&  f1set &&  f2set &&  f3set, "All fields must be set before building."); // Added static assert    
-        return AutomationData(this->m_NosTank, this->m_NosSource, this->m_IpaTank, this->m_IpaPress);    
+        return PacketAutomationData(this->m_NosTank, this->m_NosSource, this->m_IpaTank, this->m_IpaPress);    
     }    
     
             
@@ -76,7 +102,7 @@ private:
 
     uint8_t id = 4;
 
-    AutomationData(float NosTankIn, float NosSourceIn, float IpaTankIn, float IpaPressIn)
+    PacketAutomationData(float NosTankIn, float NosSourceIn, float IpaTankIn, float IpaPressIn)
         : m_NosTank(NosTankIn), m_NosSource(NosSourceIn), m_IpaTank(IpaTankIn), m_IpaPress(IpaPressIn)
     {}
 };

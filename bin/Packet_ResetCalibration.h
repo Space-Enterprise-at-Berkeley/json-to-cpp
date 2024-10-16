@@ -3,28 +3,55 @@
 
 #include "common.h"
 
-class ResetCalibration 
+#ifdef TC
+#error
+#endif
+#ifdef AC
+#error
+#endif
+#ifdef CF
+#error
+#endif
+#ifdef AC_2
+#error
+#endif
+#ifdef AC_3
+#error
+#endif
+#ifdef AC_1
+#error
+#endif
+
+
+class PacketResetCalibration 
 {
 public:
 
          
-    
+template<bool f0set>    
 class Builder_    
 {    
     private:    
-        
+    uint8_t m_Channel;    
     
     public:    
-    Builder_()    
-            
+    Builder_(uint8_t ChannelIn)    
+        : m_Channel(ChannelIn)    
     {}    
     
     Builder_() {}    
     
-    ResetCalibration build() const    
+    PacketResetCalibration build() const    
     {            
-        //static_assert(, "All fields must be set before building."); // Added static assert    
-        return ResetCalibration();    
+        static_assert( f0set, "All fields must be set before building."); // Added static assert    
+        return PacketResetCalibration(this->m_Channel);    
+    }    
+    
+            
+    Builder_<true> withChannel(uint8_t input) const     
+    {    
+        static_assert(! f0set, "Cannot set field 'Channel', it is already set");    
+        return Builder_<true>(input);    
     }    
     
             
@@ -35,15 +62,15 @@ class Builder_
         return id;
     }
 
-    using Builder = Builder_;
+    using Builder = Builder_<false>;
 
 private:
-    
+    uint8_t m_Channel;
 
-    uint8_t id = 104;
+    uint8_t id = 103;
 
-    ResetCalibration()
-        
+    PacketResetCalibration(uint8_t ChannelIn)
+        : m_Channel(ChannelIn)
     {}
 };
 

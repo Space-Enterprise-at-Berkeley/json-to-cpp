@@ -3,7 +3,24 @@
 
 #include "common.h"
 
-class 24VSupplyStats 
+#ifdef CF
+#error
+#endif
+#ifdef ER
+#error
+#endif
+#ifdef AC_2
+#error
+#endif
+#ifdef AC_3
+#error
+#endif
+#ifdef AC_1
+#error
+#endif
+
+
+class Packet24VSupplyStats 
 {
 public:
 
@@ -23,10 +40,10 @@ class Builder_
     
     Builder_() {}    
     
-    24VSupplyStats build() const    
+    Packet24VSupplyStats build() const    
     {            
         static_assert( f0set &&  f1set &&  f2set, "All fields must be set before building."); // Added static assert    
-        return 24VSupplyStats(this->m_Supply24Voltage, this->m_Supply24Current, this->m_Supply24Power);    
+        return Packet24VSupplyStats(this->m_Supply24Voltage, this->m_Supply24Current, this->m_Supply24Power);    
     }    
     
             
@@ -67,7 +84,7 @@ private:
 
     uint8_t id = 1;
 
-    24VSupplyStats(float Supply24VoltageIn, float Supply24CurrentIn, float Supply24PowerIn)
+    Packet24VSupplyStats(float Supply24VoltageIn, float Supply24CurrentIn, float Supply24PowerIn)
         : m_Supply24Voltage(Supply24VoltageIn), m_Supply24Current(Supply24CurrentIn), m_Supply24Power(Supply24PowerIn)
     {}
 };

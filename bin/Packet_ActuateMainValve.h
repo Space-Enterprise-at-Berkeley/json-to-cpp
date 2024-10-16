@@ -3,7 +3,33 @@
 
 #include "common.h"
 
-class ActuateMainValve 
+#ifdef PT
+#error
+#endif
+#ifdef TC
+#error
+#endif
+#ifdef LC
+#error
+#endif
+#ifdef AC
+#error
+#endif
+#ifdef CF
+#error
+#endif
+#ifdef AC_2
+#error
+#endif
+#ifdef AC_3
+#error
+#endif
+#ifdef AC_1
+#error
+#endif
+
+
+class PacketActuateMainValve 
 {
 public:
 
@@ -21,10 +47,10 @@ class Builder_
     
     Builder_() {}    
     
-    ActuateMainValve build() const    
+    PacketActuateMainValve build() const    
     {            
         //static_assert(, "All fields must be set before building."); // Added static assert    
-        return ActuateMainValve();    
+        return PacketActuateMainValve();    
     }    
     
             
@@ -42,7 +68,7 @@ private:
 
     uint8_t id = 210;
 
-    ActuateMainValve()
+    PacketActuateMainValve()
         
     {}
 };

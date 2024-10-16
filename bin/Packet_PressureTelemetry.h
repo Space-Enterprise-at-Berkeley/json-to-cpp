@@ -3,7 +3,33 @@
 
 #include "common.h"
 
-class PressureTelemetry 
+#ifdef PT
+#error
+#endif
+#ifdef TC
+#error
+#endif
+#ifdef LC
+#error
+#endif
+#ifdef AC
+#error
+#endif
+#ifdef CF
+#error
+#endif
+#ifdef AC_2
+#error
+#endif
+#ifdef AC_3
+#error
+#endif
+#ifdef AC_1
+#error
+#endif
+
+
+class PacketPressureTelemetry 
 {
 public:
 
@@ -28,10 +54,10 @@ class Builder_
     
     Builder_() {}    
     
-    PressureTelemetry build() const    
+    PacketPressureTelemetry build() const    
     {            
         static_assert( f0set &&  f1set &&  f2set &&  f3set &&  f4set &&  f5set &&  f6set &&  f7set, "All fields must be set before building."); // Added static assert    
-        return PressureTelemetry(this->m_FilteredUpstreamPressure1, this->m_FilteredUpstreamPressure2, this->m_FilteredDownstreamPressure1, this->m_FilteredDownstreamPressure2, this->m_RawUpstreamPressure1, this->m_RawUpstreamPressure2, this->m_RawDownstreamPressure1, this->m_RawDownstreamPressure2);    
+        return PacketPressureTelemetry(this->m_FilteredUpstreamPressure1, this->m_FilteredUpstreamPressure2, this->m_FilteredDownstreamPressure1, this->m_FilteredDownstreamPressure2, this->m_RawUpstreamPressure1, this->m_RawUpstreamPressure2, this->m_RawDownstreamPressure1, this->m_RawDownstreamPressure2);    
     }    
     
             
@@ -112,7 +138,7 @@ private:
 
     uint8_t id = 1;
 
-    PressureTelemetry(float FilteredUpstreamPressure1In, float FilteredUpstreamPressure2In, float FilteredDownstreamPressure1In, float FilteredDownstreamPressure2In, float RawUpstreamPressure1In, float RawUpstreamPressure2In, float RawDownstreamPressure1In, float RawDownstreamPressure2In)
+    PacketPressureTelemetry(float FilteredUpstreamPressure1In, float FilteredUpstreamPressure2In, float FilteredDownstreamPressure1In, float FilteredDownstreamPressure2In, float RawUpstreamPressure1In, float RawUpstreamPressure2In, float RawDownstreamPressure1In, float RawDownstreamPressure2In)
         : m_FilteredUpstreamPressure1(FilteredUpstreamPressure1In), m_FilteredUpstreamPressure2(FilteredUpstreamPressure2In), m_FilteredDownstreamPressure1(FilteredDownstreamPressure1In), m_FilteredDownstreamPressure2(FilteredDownstreamPressure2In), m_RawUpstreamPressure1(RawUpstreamPressure1In), m_RawUpstreamPressure2(RawUpstreamPressure2In), m_RawDownstreamPressure1(RawDownstreamPressure1In), m_RawDownstreamPressure2(RawDownstreamPressure2In)
     {}
 };

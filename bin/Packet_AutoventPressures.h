@@ -3,7 +3,33 @@
 
 #include "common.h"
 
-class AutoventPressures 
+#ifdef PT
+#error
+#endif
+#ifdef TC
+#error
+#endif
+#ifdef LC
+#error
+#endif
+#ifdef CF
+#error
+#endif
+#ifdef ER
+#error
+#endif
+#ifdef AC_2
+#error
+#endif
+#ifdef AC_3
+#error
+#endif
+#ifdef AC_1
+#error
+#endif
+
+
+class PacketAutoventPressures 
 {
 public:
 
@@ -21,10 +47,10 @@ class Builder_
     
     Builder_() {}    
     
-    AutoventPressures build() const    
+    PacketAutoventPressures build() const    
     {            
         static_assert( f0set, "All fields must be set before building."); // Added static assert    
-        return AutoventPressures(this->m_AutoventPressure);    
+        return PacketAutoventPressures(this->m_AutoventPressure);    
     }    
     
             
@@ -49,7 +75,7 @@ private:
 
     uint8_t id = 5;
 
-    AutoventPressures(float AutoventPressureIn)
+    PacketAutoventPressures(float AutoventPressureIn)
         : m_AutoventPressure(AutoventPressureIn)
     {}
 };

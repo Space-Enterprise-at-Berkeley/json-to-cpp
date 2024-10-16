@@ -3,7 +3,33 @@
 
 #include "common.h"
 
-class ActuatorContinuities 
+#ifdef PT
+#error
+#endif
+#ifdef TC
+#error
+#endif
+#ifdef LC
+#error
+#endif
+#ifdef CF
+#error
+#endif
+#ifdef ER
+#error
+#endif
+#ifdef AC_2
+#error
+#endif
+#ifdef AC_3
+#error
+#endif
+#ifdef AC_1
+#error
+#endif
+
+
+class PacketActuatorContinuities 
 {
 public:
 
@@ -21,10 +47,10 @@ class Builder_
     
     Builder_() {}    
     
-    ActuatorContinuities build() const    
+    PacketActuatorContinuities build() const    
     {            
         static_assert( f0set, "All fields must be set before building."); // Added static assert    
-        return ActuatorContinuities(this->m_Continuities);    
+        return PacketActuatorContinuities(this->m_Continuities);    
     }    
     
             
@@ -49,7 +75,7 @@ private:
 
     uint8_t id = 3;
 
-    ActuatorContinuities(std::array<float, 8> ContinuitiesIn)
+    PacketActuatorContinuities(std::array<float, 8> ContinuitiesIn)
         : m_Continuities(ContinuitiesIn)
     {}
 };

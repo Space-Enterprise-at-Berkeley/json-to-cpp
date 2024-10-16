@@ -3,7 +3,27 @@
 
 #include "common.h"
 
-class FirstPointCalibration 
+#ifdef TC
+#error
+#endif
+#ifdef AC
+#error
+#endif
+#ifdef CF
+#error
+#endif
+#ifdef AC_2
+#error
+#endif
+#ifdef AC_3
+#error
+#endif
+#ifdef AC_1
+#error
+#endif
+
+
+class PacketFirstPointCalibration 
 {
 public:
 
@@ -22,10 +42,10 @@ class Builder_
     
     Builder_() {}    
     
-    FirstPointCalibration build() const    
+    PacketFirstPointCalibration build() const    
     {            
         static_assert( f0set &&  f1set, "All fields must be set before building."); // Added static assert    
-        return FirstPointCalibration(this->m_Channel, this->m_Value);    
+        return PacketFirstPointCalibration(this->m_Channel, this->m_Value);    
     }    
     
             
@@ -56,9 +76,9 @@ private:
     uint8_t m_Channel;
     float m_Value;
 
-    uint8_t id = 101;
+    uint8_t id = 100;
 
-    FirstPointCalibration(uint8_t ChannelIn, float ValueIn)
+    PacketFirstPointCalibration(uint8_t ChannelIn, float ValueIn)
         : m_Channel(ChannelIn), m_Value(ValueIn)
     {}
 };

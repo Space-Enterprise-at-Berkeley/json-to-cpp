@@ -3,14 +3,16 @@ from read_json import get_packet_hierarchy, get_payloads
 from fields import Fields
 
 
-def get_packet_header_str(packet_name, packet_id, packet_fields):
+def get_packet_header_str(packet_name, packet_id, packet_fields, kill_hdr):
     # template
     template = """
 #pragma once
 
 #include "common.h"
 
-class PacketName 
+KillHeader
+
+class PacketPacketName 
 {
 public:
 
@@ -28,7 +30,7 @@ private:
 
     uint8_t id = packet_id;
 
-    PacketName(packet_args)
+    PacketPacketName(packet_args)
         : packet_constructor_inline
     {}
 };
@@ -46,8 +48,9 @@ private:
         ("packet_args", arg_name_str),
         ("packet_constructor_inline", inline_val_str),
         ("packet_fields", field_decl_str),
-        ("[BUILDER]", packet_fields.build_Builder(packet_name).replace("\n","    \n")),
-        ("false_list", ", ".join(["false"] * packet_fields.num_fields))
+        ("[BUILDER]", packet_fields.build_Builder("Packet"+packet_name).replace("\n","    \n")),
+        ("false_list", ", ".join(["false"] * packet_fields.num_fields)),
+        ("KillHeader", kill_hdr)
     ])
 
         # no fields...
@@ -72,60 +75,61 @@ def make_group_header(packet_group_key, packets_for_packet_group):
 # In; dict of packet_group : {packet1 : {id : [ID], payload : [PAYLOAD]...}...}
 # In: dict of payloads; {[NAME] : {type : [TYPE], symbol : [NAME]... }... }
 # Out: dict of {}
-def create_packet_headers(packet_groups_for_device, packets_for_packet_group, payloads, build_path = "../bin"):
+def create_packet_headers(packet_list, payloads, build_path = "../bin"):
     packet_structs = {}
     
     os.system(f"cp ../common/* {build_path}")
 
-    for packet_group_key in packets_for_packet_group.keys():
-    
-        print(f"Compiling group {packet_group_key}")
+    all_rw = []
 
-        for packet_key in tqdm(packets_for_packet_group[packet_group_key].keys()):
+    for packet_def in packet_list:
+        allowed = packet_def['writes'] + packet_def['reads']
+        if (type(allowed) != str):
+            for i in allowed:
+                if (i.replace("*","") not in all_rw):
+                    all_rw.append(i.replace("*",""))
 
-            packet_def = packets_for_packet_group[packet_group_key][packet_key]
-            
-
-            if ("payload" in packet_def.keys()):
-                packet_payload = payloads[packet_def["payload"]]
-            else:
-                packet_payload = {}
-
-            # Now struct has id and payload corresponding to the desired thingiemabobber
-            packet_fields = Fields(packet_payload)
+    for packet_def in tqdm(packet_list):
 
 
-            # Make the packet
-            packet_name = packet_key
-            packet_id = packet_def["id"]
+        if ("payload" in packet_def.keys() and packet_def["payload"]):
+            packet_payload = payloads[packet_def["payload"]]
+        else:
+            packet_payload = {}
 
-            packet_header_str = get_packet_header_str(packet_name, packet_id, packet_fields)
+        # Now struct has id and payload corresponding to the desired thingiemabobber
+        packet_fields = Fields(packet_payload)
 
-            packet_header_path = os.path.join(build_path, get_packet_file_name(packet_name))
-            open(packet_header_path, "w+").write(packet_header_str)
-    
-    
-    for packet_group_key in packets_for_packet_group.keys():
-        group_header = make_group_header(packet_group_key, packets_for_packet_group)
-        open(os.path.join(build_path, f"Group_{packet_group_key}.h"), "w+").write(group_header)
+        # Make the packet
+        packet_name = packet_def['name']
+        packet_id = packet_def["id"]
 
-    for packet_device_key in packet_groups_for_device.keys():
-        device_header = "#pragma once\n"
-        for group_name in (packet_groups_for_device[packet_device_key]):
-            device_header += f'#include "Group_{group_name}.h"\n'
-        
-        open(os.path.join(build_path, f"Device_{packet_device_key}.h"), "w+").write(device_header)
+        kill_hdr = ""
+
+        allowed = packet_def['writes'] + packet_def['reads']
+        if (type(allowed) != str):
+            allowed_rw = [i.replace("*", '') for i in allowed]
+            disallowed_rw = [i if not (i in allowed_rw) else None for i in all_rw ]
+
+            for die in disallowed_rw:
+                if (die):
+                    kill_hdr += f"#ifdef {die}\n#error\n#endif\n"
+
+        packet_header_str = get_packet_header_str(packet_name, packet_id, packet_fields, kill_hdr)
+
+        packet_header_path = os.path.join(build_path, get_packet_file_name(packet_name))
+        open(packet_header_path, "w+").write(packet_header_str)
             
 
 
 def make_headers():
     
-    packet_groups_for_device, packets_for_packet_group = get_packet_hierarchy()
+    packets_for_packet_group = get_packet_hierarchy()
     
     payloads = get_payloads()
 
     packet_structs = {}
 
-    create_packet_headers(packet_groups_for_device, packets_for_packet_group, payloads)
+    create_packet_headers(packets_for_packet_group, payloads)
 
 make_headers()

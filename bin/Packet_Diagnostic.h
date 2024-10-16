@@ -3,7 +3,33 @@
 
 #include "common.h"
 
-class Diagnostic 
+#ifdef PT
+#error
+#endif
+#ifdef TC
+#error
+#endif
+#ifdef LC
+#error
+#endif
+#ifdef AC
+#error
+#endif
+#ifdef CF
+#error
+#endif
+#ifdef AC_2
+#error
+#endif
+#ifdef AC_3
+#error
+#endif
+#ifdef AC_1
+#error
+#endif
+
+
+class PacketDiagnostic 
 {
 public:
 
@@ -22,10 +48,10 @@ class Builder_
     
     Builder_() {}    
     
-    Diagnostic build() const    
+    PacketDiagnostic build() const    
     {            
         static_assert( f0set &&  f1set, "All fields must be set before building."); // Added static assert    
-        return Diagnostic(this->m_MotorDirPass, this->m_ServoDirPass);    
+        return PacketDiagnostic(this->m_MotorDirPass, this->m_ServoDirPass);    
     }    
     
             
@@ -58,7 +84,7 @@ private:
 
     uint8_t id = 4;
 
-    Diagnostic(uint8_t MotorDirPassIn, uint8_t ServoDirPassIn)
+    PacketDiagnostic(uint8_t MotorDirPassIn, uint8_t ServoDirPassIn)
         : m_MotorDirPass(MotorDirPassIn), m_ServoDirPass(ServoDirPassIn)
     {}
 };

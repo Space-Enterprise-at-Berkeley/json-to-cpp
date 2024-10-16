@@ -18,10 +18,7 @@
 #ifdef CF
 #error
 #endif
-#ifdef AC_2
-#error
-#endif
-#ifdef AC_3
+#ifdef ER
 #error
 #endif
 #ifdef AC_1
@@ -29,7 +26,7 @@
 #endif
 
 
-class PacketSetI 
+class PacketSetAutoventThreshold 
 {
 public:
 
@@ -38,25 +35,25 @@ template<bool f0set>
 class Builder_    
 {    
     private:    
-    float m_Value;    
+    float m_AutoventPressure;    
     
     public:    
-    Builder_(float ValueIn)    
-        : m_Value(ValueIn)    
+    Builder_(float AutoventPressureIn)    
+        : m_AutoventPressure(AutoventPressureIn)    
     {}    
     
     Builder_() {}    
     
-    PacketSetI build() const    
+    PacketSetAutoventThreshold build() const    
     {            
         static_assert( f0set, "All fields must be set before building."); // Added static assert    
-        return PacketSetI(this->m_Value);    
+        return PacketSetAutoventThreshold(this->m_AutoventPressure);    
     }    
     
             
-    Builder_<true> withValue(float input) const     
+    Builder_<true> withAutoventPressure(float input) const     
     {    
-        static_assert(! f0set, "Cannot set field 'Value', it is already set");    
+        static_assert(! f0set, "Cannot set field 'AutoventPressure', it is already set");    
         return Builder_<true>(input);    
     }    
     
@@ -71,12 +68,12 @@ class Builder_
     using Builder = Builder_<false>;
 
 private:
-    float m_Value;
+    float m_AutoventPressure;
 
-    uint8_t id = 207;
+    uint8_t id = 124;
 
-    PacketSetI(float ValueIn)
-        : m_Value(ValueIn)
+    PacketSetAutoventThreshold(float AutoventPressureIn)
+        : m_AutoventPressure(AutoventPressureIn)
     {}
 };
 

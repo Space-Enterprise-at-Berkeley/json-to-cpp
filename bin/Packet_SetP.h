@@ -3,7 +3,33 @@
 
 #include "common.h"
 
-class SetP 
+#ifdef PT
+#error
+#endif
+#ifdef TC
+#error
+#endif
+#ifdef LC
+#error
+#endif
+#ifdef AC
+#error
+#endif
+#ifdef CF
+#error
+#endif
+#ifdef AC_2
+#error
+#endif
+#ifdef AC_3
+#error
+#endif
+#ifdef AC_1
+#error
+#endif
+
+
+class PacketSetP 
 {
 public:
 
@@ -21,10 +47,10 @@ class Builder_
     
     Builder_() {}    
     
-    SetP build() const    
+    PacketSetP build() const    
     {            
         static_assert( f0set, "All fields must be set before building."); // Added static assert    
-        return SetP(this->m_Value);    
+        return PacketSetP(this->m_Value);    
     }    
     
             
@@ -49,7 +75,7 @@ private:
 
     uint8_t id = 206;
 
-    SetP(float ValueIn)
+    PacketSetP(float ValueIn)
         : m_Value(ValueIn)
     {}
 };

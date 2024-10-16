@@ -3,7 +3,33 @@
 
 #include "common.h"
 
-class Config 
+#ifdef PT
+#error
+#endif
+#ifdef TC
+#error
+#endif
+#ifdef LC
+#error
+#endif
+#ifdef AC
+#error
+#endif
+#ifdef CF
+#error
+#endif
+#ifdef AC_2
+#error
+#endif
+#ifdef AC_3
+#error
+#endif
+#ifdef AC_1
+#error
+#endif
+
+
+class PacketConfig 
 {
 public:
 
@@ -28,10 +54,10 @@ class Builder_
     
     Builder_() {}    
     
-    Config build() const    
+    PacketConfig build() const    
     {            
         static_assert( f0set &&  f1set &&  f2set &&  f3set &&  f4set &&  f5set &&  f6set &&  f7set, "All fields must be set before building."); // Added static assert    
-        return Config(this->m_PressureSetpointConfig, this->m_POuterNominal, this->m_IOuterNominal, this->m_DOuterNominal, this->m_PInner, this->m_IInner, this->m_DInner, this->m_FlowDurationSeconds);    
+        return PacketConfig(this->m_PressureSetpointConfig, this->m_POuterNominal, this->m_IOuterNominal, this->m_DOuterNominal, this->m_PInner, this->m_IInner, this->m_DInner, this->m_FlowDurationSeconds);    
     }    
     
             
@@ -112,7 +138,7 @@ private:
 
     uint8_t id = 3;
 
-    Config(float PressureSetpointConfigIn, float POuterNominalIn, float IOuterNominalIn, float DOuterNominalIn, float PInnerIn, float IInnerIn, float DInnerIn, float FlowDurationSecondsIn)
+    PacketConfig(float PressureSetpointConfigIn, float POuterNominalIn, float IOuterNominalIn, float DOuterNominalIn, float PInnerIn, float IInnerIn, float DInnerIn, float FlowDurationSecondsIn)
         : m_PressureSetpointConfig(PressureSetpointConfigIn), m_POuterNominal(POuterNominalIn), m_IOuterNominal(IOuterNominalIn), m_DOuterNominal(DOuterNominalIn), m_PInner(PInnerIn), m_IInner(IInnerIn), m_DInner(DInnerIn), m_FlowDurationSeconds(FlowDurationSecondsIn)
     {}
 };

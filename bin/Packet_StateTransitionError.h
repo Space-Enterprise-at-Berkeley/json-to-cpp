@@ -3,7 +3,33 @@
 
 #include "common.h"
 
-class StateTransitionError 
+#ifdef PT
+#error
+#endif
+#ifdef TC
+#error
+#endif
+#ifdef LC
+#error
+#endif
+#ifdef AC
+#error
+#endif
+#ifdef CF
+#error
+#endif
+#ifdef AC_2
+#error
+#endif
+#ifdef AC_3
+#error
+#endif
+#ifdef AC_1
+#error
+#endif
+
+
+class PacketStateTransitionError 
 {
 public:
 
@@ -21,10 +47,10 @@ class Builder_
     
     Builder_() {}    
     
-    StateTransitionError build() const    
+    PacketStateTransitionError build() const    
     {            
         static_assert( f0set, "All fields must be set before building."); // Added static assert    
-        return StateTransitionError(this->m_ErrorCode);    
+        return PacketStateTransitionError(this->m_ErrorCode);    
     }    
     
             
@@ -49,7 +75,7 @@ private:
 
     uint8_t id = 5;
 
-    StateTransitionError(uint8_t ErrorCodeIn)
+    PacketStateTransitionError(uint8_t ErrorCodeIn)
         : m_ErrorCode(ErrorCodeIn)
     {}
 };

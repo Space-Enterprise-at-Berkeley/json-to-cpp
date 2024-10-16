@@ -3,7 +3,33 @@
 
 #include "common.h"
 
-class Values 
+#ifdef PT
+#error
+#endif
+#ifdef LC
+#error
+#endif
+#ifdef AC
+#error
+#endif
+#ifdef CF
+#error
+#endif
+#ifdef ER
+#error
+#endif
+#ifdef AC_2
+#error
+#endif
+#ifdef AC_3
+#error
+#endif
+#ifdef AC_1
+#error
+#endif
+
+
+class PacketValues 
 {
 public:
 
@@ -21,10 +47,10 @@ class Builder_
     
     Builder_() {}    
     
-    Values build() const    
+    PacketValues build() const    
     {            
         static_assert( f0set, "All fields must be set before building."); // Added static assert    
-        return Values(this->m_Values);    
+        return PacketValues(this->m_Values);    
     }    
     
             
@@ -49,7 +75,7 @@ private:
 
     uint8_t id = 2;
 
-    Values(std::array<float, 8> ValuesIn)
+    PacketValues(std::array<float, 8> ValuesIn)
         : m_Values(ValuesIn)
     {}
 };
